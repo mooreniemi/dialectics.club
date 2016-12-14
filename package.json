@@ -8,10 +8,11 @@
     "webpack": "^1.14.0"
   },
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "webpack-node-externals": "^1.5.4"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha-webpack --webpack-config webpack.config-test.js \"src/**/*.test.js\""
   },
   "repository": {
     "type": "git",
