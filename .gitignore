@@ -1,3 +1,6 @@
+# testing
+.tmp/
+
 # Logs
 logs
 *.log
