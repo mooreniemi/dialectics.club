@@ -7,7 +7,7 @@ function printDom() {
   console.log(window.document.documentElement.outerHTML);
 }
 
-describe('App', function() {
+describe('app', function() {
   // https://www.npmjs.com/package/mocha-jsdom
   jsdom();
 
@@ -17,8 +17,8 @@ describe('App', function() {
     document.body.appendChild(div);
   });
 
-  describe('loading', function() {
-    it('it should load our application', function() {
+  describe('#init', function() {
+    it('it should load our application to our appContainer element', function() {
       app.init();
 
       var content = document.getElementById('appContainer').textContent;
