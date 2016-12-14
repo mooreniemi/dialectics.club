@@ -8,16 +8,17 @@ function printDom() {
 }
 
 describe('App', function() {
-
   // https://www.npmjs.com/package/mocha-jsdom
   jsdom();
 
+  before(function() {
+    var div = document.createElement('div');
+    div.id = 'appContainer';
+    document.body.appendChild(div);
+  });
+
   describe('loading', function() {
     it('it should load our application', function() {
-      var div = document.createElement('div');
-      div.id = 'appContainer';
-      document.body.appendChild(div);
-
       app.init();
 
       var content = document.getElementById('appContainer').textContent;
