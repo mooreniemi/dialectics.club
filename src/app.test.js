@@ -21,9 +21,8 @@ describe('app', function() {
     it('it should load our application to our appContainer element', function() {
       app.init();
 
-      var content = document.getElementById('appContainer').textContent;
-      expect(content).eq('welcome to my app');
+      var content = document.getElementById('welcome').textContent;
+      expect(content).eq('begin with a judgment');
     });
   });
 });
-

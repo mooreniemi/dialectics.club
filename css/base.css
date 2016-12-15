@@ -16,3 +16,17 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.startArgument {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ifInput {
+  margin-left: 5px;
+}
+
+.thenInput {
+  margin-left: 5px;
+}
