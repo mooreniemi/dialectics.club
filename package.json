@@ -5,6 +5,7 @@
   "main": "bundle.js",
   "dependencies": {
     "i18next": "^4.1.1",
+    "i18next-localstorage-cache": "^0.3.0",
     "mocha-webpack": "^0.7.0",
     "webpack": "^1.14.0"
   },
