@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Lacuna';
+  src: url('./../fonts/lacuna-webfont.woff');
+}
+
+body {
+  font: 16pt 'Lacuna';
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

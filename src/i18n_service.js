@@ -10,8 +10,11 @@ module.exports = i18next.
       en: {
         translation: {
           "welcome to my app": "welcome to my app",
+          "brand": {
+            "appName": "dialectics.club"
+          },
           "errors": {
-            "no root": "lacked container to root in"
+            "noRoot": "lacked container to root in"
           }
         }
       }

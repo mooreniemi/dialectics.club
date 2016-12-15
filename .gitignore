@@ -1,3 +1,9 @@
+# mac
+.DS_Store
+
+# webpack
+bundle.js
+
 # testing
 .tmp/
 
