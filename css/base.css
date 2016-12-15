@@ -7,6 +7,10 @@ body {
   font: 16pt 'Lacuna';
 }
 
+.brandName {
+  margin: 10px;
+}
+
 .welcome {
   display: flex;
   align-items: center;
