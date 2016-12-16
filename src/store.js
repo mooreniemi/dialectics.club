@@ -11,7 +11,6 @@ function init(storage) {
       return JSON.parse(storage.getItem(key));
     },
     persist(key, values) {
-      console.log(storage)
       return storage.setItem(key, JSON.stringify(values));
     }
   };
