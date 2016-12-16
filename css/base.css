@@ -17,10 +17,17 @@ body {
   margin: 10px;
 }
 
+@keyframes fade {
+  0%,100% { opacity: 0 }
+  50% { opacity: 1 }
+}
+
 .welcome {
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 1;
+  animation: fade 5s linear;
 }
 
 .argument {

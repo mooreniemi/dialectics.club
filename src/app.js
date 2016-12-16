@@ -16,7 +16,7 @@ function init() {
 	} else {
 		c.innerHTML += brand;
 		c.innerHTML += welcome;
-    window.setTimeout(function() { document.getElementById('welcome').remove(); }, 2000);
+    window.setTimeout(function() { document.getElementById('welcome').remove(); }, 5000);
     c.innerHTML += '<div id="workingArea"><div id="sheet"></div><button id="submit" class="submitArgument">+</button></div>';
     const s = document.getElementById('sheet');
 
