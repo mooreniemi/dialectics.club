@@ -5,7 +5,7 @@ function argTemplate(a) {
 	return `<div id="${Object.keys(a)}" class="argument">If ${i}, then ${t}.</div>`;
 }
 
-function loadArguments(container) {
+function load(container) {
 	var arguments = JSON.parse(localStorage.getItem('arguments'));
 	var serialized = arguments.map(e => {
 		return argTemplate(e);
@@ -14,14 +14,7 @@ function loadArguments(container) {
 	container.innerHTML += serialized;
 }
 
-function initStorage() {
-	const currentStore = localStorage.getItem('arguments');
-	if(currentStore === null) {
-		localStorage.setItem('arguments', JSON.stringify([]));
-	}
-}
-
-function storeArgument(i, t) {
+function store(i, t) {
 	const args = [i, t];
 	const key = `${i}-${t}`;
 	var o = {};
@@ -33,8 +26,19 @@ function storeArgument(i, t) {
 	localStorage.setItem('arguments', JSON.stringify(storedArguments));
 }
 
-function addArgument(container) {
+function add(container) {
 	container.innerHTML += startArgument;
 }
 
-module.exports = { storeArgument, addArgument, loadArguments, initStorage }
+function redraw(container) {
+	const submitArgumentButton = document.getElementById('submit');
+	submitArgumentButton.addEventListener('click', function() {
+		const [i, t] = document.querySelectorAll('input');
+		store(i.value, t.value);
+		document.getElementById('activeArgument').remove();
+		load(container);
+		add(container);
+	});
+}
+
+module.exports = { store, add, load, initStorage, redraw };

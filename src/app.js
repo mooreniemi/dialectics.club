@@ -1,12 +1,14 @@
 const containerId = 'appContainer';
+
 const i18nService = require('./i18n_service.js');
-const a = require('./arguments.js');
+const judgments = require('./judgments.js');
+const store = require('./store.js');
 
 const brand = `<h1 class="brandName">${i18nService.t('brand.appName')}</h1>`;
 const welcome = `<p id="welcome" class="welcome">${i18nService.t('begin with a judgment')}</p>`;
 
 function init() {
-	a.initStorage();
+	store.init();
 
 	const c = document.getElementById(containerId);
 
@@ -16,18 +18,11 @@ function init() {
 		c.innerHTML += brand;
 		c.innerHTML += welcome;
 
-		a.loadArguments(c);
-		a.addArgument(c);
+		judgments.load(c);
+		judgments.add(c);
 	}
 
-	const submitArgumentButton = document.getElementById('submit');
-	submitArgumentButton.addEventListener('click', function() {
-		const [i, t] = document.querySelectorAll('input');
-		a.storeArgument(i.value, t.value);
-		document.getElementById('activeArgument').remove();
-		a.loadArguments(c);
-		a.addArgument(c);
-	});
+  judgments.redraw(c);
 
 	return document;
 }
