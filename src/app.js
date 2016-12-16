@@ -1,14 +1,13 @@
 const constants = require('./constants.js');
 const i18nService = require('./i18n_service.js');
 const judgments = require('./judgments.js');
-const store = require('./store.js');
+const storeService = require('./store.js');
 
 const brand = `<h1 class="brandName">${i18nService.t('brand.appName')}</h1>`;
 const welcome = `<p id="welcome" class="welcome">${i18nService.t('begin with a judgment')}</p>`;
 
 function init() {
-	store.init(localStorage);
-
+  const store = storeService.connect();
 	const c = document.getElementById(constants.containerId);
 
 	if(c === null) {
@@ -22,10 +21,10 @@ function init() {
 
 	  const submitArgumentButton = document.getElementById('submit');
 	  submitArgumentButton.addEventListener('click', function() {
-      judgments.submitArgument(s);
+      judgments.submitArgument(s, store);
     });
 
-    judgments.redraw(s);
+    judgments.redraw(s, store);
 	}
 
 

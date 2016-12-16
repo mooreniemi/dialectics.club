@@ -1,5 +1,26 @@
 const constants = require('./constants.js');
 
+function connect() {
+  var store;
+  if (typeof localStorage === 'undefined') {
+    const mock = function() {
+      var storage = {};
+      return {
+        setItem: function(key, value) {
+          storage[key] = value || '';
+        },
+        getItem: function(key) {
+          return storage[key] || null;
+        },
+      };
+    }();
+	  store = init(mock);
+  } else {
+	  store = init(localStorage);
+  }
+  return store;
+}
+
 function init(storage) {
 	const currentStore = storage.getItem(constants.keyName);
 	if(currentStore === null) {
@@ -17,4 +38,4 @@ function init(storage) {
 }
 
 
-module.exports = { init };
+module.exports = { connect };
