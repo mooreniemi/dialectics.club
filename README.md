@@ -2,8 +2,7 @@
 
 ## prerequisites
 
-- `npm install -g webpack`
-- `npm install -g webpack-dev-server`
+- [node](https://nodejs.org/en/)
 
 ## install
 
@@ -11,7 +10,7 @@
 
 ## run
 
-`webpack-dev-server --watch`
+`npm run serve`
 
 ## test
 
