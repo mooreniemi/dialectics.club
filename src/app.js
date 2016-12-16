@@ -1,10 +1,10 @@
 const constants = require('./constants.js');
+
 const i18nService = require('./i18n_service.js');
-const judgments = require('./judgments.js');
 const storeService = require('./store.js');
 
-const brand = `<h1 class="brandName">${i18nService.t('brand.appName')}</h1>`;
-const welcome = `<p id="welcome" class="welcome">${i18nService.t('begin with a judgment')}</p>`;
+const judgments = require('./judgments.js');
+const templates = require('./templates.js');
 
 function init() {
   const store = storeService.connect();
@@ -13,10 +13,11 @@ function init() {
 	if(c === null) {
 		console.log(i18nService.t('errors.noRoot'));
 	} else {
-		c.innerHTML += brand;
-		c.innerHTML += welcome;
+		c.innerHTML += templates.brand;
+		c.innerHTML += templates.welcome;
     window.setTimeout(function() { document.getElementById('welcome').remove(); }, 5000);
-    c.innerHTML += '<div id="workingArea"><div id="sheet"></div><button id="submit" class="submitArgument">+</button></div>';
+
+    c.innerHTML += templates.workingArea;
     const s = document.getElementById('sheet');
 
 	  const submitArgumentButton = document.getElementById('submit');

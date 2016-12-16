@@ -1,17 +1,10 @@
 const constants = require('./constants.js');
-const storeService = require('./store.js');
-
-const startArgument = `<div id="activeArgument" class="argument">If <input name="if" class="ifInput" placeholder="x is true">, then <input name="then" class="thenInput" placeholder="y is true">.</div>`;
-
-function argTemplate(a) {
-  const [i, t] = Object.values(a)[0];
-  return `<div id="${Object.keys(a)}" class="argument">If ${i}, then ${t}.</div>`;
-}
+const templates = require('./templates.js');
 
 function load(container, store) {
   var arguments = store.retrieveAll(constants.keyName);
   var serialized = arguments.map(e => {
-    return argTemplate(e);
+    return templates.oneArgument(e);
   });
 
   container.innerHTML = '';
@@ -21,7 +14,7 @@ function load(container, store) {
 }
 
 function add(container) {
-  container.innerHTML += startArgument;
+  container.innerHTML += templates.startArgument;
 }
 
 function submitArgument(container, store) {
