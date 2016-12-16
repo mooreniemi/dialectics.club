@@ -1,4 +1,6 @@
 const constants = require('./constants.js');
+const storeService = require('./store.js');
+const store = storeService.init(localStorage);
 
 const startArgument = `<div id="activeArgument" class="argument">If <input name="if" class="ifInput" placeholder="x is true">, then <input name="then" class="thenInput" placeholder="y is true">.</div>`;
 
@@ -8,7 +10,7 @@ function argTemplate(a) {
 }
 
 function load(container) {
-  var arguments = JSON.parse(localStorage.getItem(constants.keyName));
+  var arguments = store.retrieveAll(constants.keyName);
   var serialized = arguments.map(e => {
     return argTemplate(e);
   });
@@ -17,18 +19,6 @@ function load(container) {
   serialized.map(s => {
     container.innerHTML += s;
   });
-}
-
-function store(i, t) {
-  const args = [i, t];
-  const key = `${i}-${t}`;
-  var o = {};
-  o[key] = args;
-
-  var storedArguments = JSON.parse(localStorage.getItem(constants.keyName));
-  storedArguments.push(o);
-
-  localStorage.setItem(constants.keyName, JSON.stringify(storedArguments));
 }
 
 function add(container) {
@@ -42,7 +32,16 @@ function submitArgument(container) {
 
 function save() {
   const [i, t] = document.querySelectorAll('input');
-  store(i.value, t.value);
+  const args = [i.value, t.value];
+  // TODO: how to key usefully?
+  const key = `${i.value}-${t.value}`;
+  var o = {};
+  o[key] = args;
+
+  var storedArguments = store.retrieveAll(constants.keyName);
+  storedArguments.push(o);
+
+  store.persist(constants.keyName, storedArguments);
 }
 
 function redraw(container) {

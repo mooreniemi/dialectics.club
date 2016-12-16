@@ -1,10 +1,21 @@
 const constants = require('./constants.js');
 
-function init() {
-	const currentStore = localStorage.getItem(constants.keyName);
+function init(storage) {
+	const currentStore = storage.getItem(constants.keyName);
 	if(currentStore === null) {
-		localStorage.setItem(constants.keyName, JSON.stringify([]));
+		storage.setItem(constants.keyName, JSON.stringify([]));
 	}
+
+  return {
+    retrieveAll(key) {
+      return JSON.parse(storage.getItem(key));
+    },
+    persist(key, values) {
+      console.log(storage)
+      return storage.setItem(key, JSON.stringify(values));
+    }
+  };
 }
+
 
 module.exports = { init };

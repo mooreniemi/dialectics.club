@@ -7,7 +7,7 @@ const brand = `<h1 class="brandName">${i18nService.t('brand.appName')}</h1>`;
 const welcome = `<p id="welcome" class="welcome">${i18nService.t('begin with a judgment')}</p>`;
 
 function init() {
-	store.init();
+	store.init(localStorage);
 
 	const c = document.getElementById(constants.containerId);
 
