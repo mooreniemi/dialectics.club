@@ -21,7 +21,7 @@ describe('app', function() {
     it('it should load our application to our appContainer element', function() {
       app.init();
 
-      var content = document.getElementById('welcome').textContent;
+      var content = document.getElementsByClassName('flashMessage')[0].textContent;
       expect(content).eq('begin with a judgment');
     });
   });

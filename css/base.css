@@ -18,15 +18,14 @@ body {
 }
 
 @keyframes fade {
-  0%,100% { opacity: 0 }
-  50% { opacity: 1 }
+  100% { opacity: 0 }
+  0% { opacity: 1 }
 }
 
-.welcome {
+.flashMessage {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 1;
   animation: fade 5s linear;
 }
 
@@ -38,7 +37,7 @@ body {
 }
 
 .ifInput:focus {
-  background: pink;
+  background: #fbe0e4;
 }
 .thenInput:focus {
   background: pink;
