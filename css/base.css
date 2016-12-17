@@ -37,12 +37,20 @@ body {
   justify-content: center;
 }
 
+.ifInput:focus {
+  background: pink;
+}
+.thenInput:focus {
+  background: pink;
+}
 .ifInput {
   margin-left: 5px;
+  padding: 7px;
 }
 
 .thenInput {
   margin-left: 5px;
+  padding: 7px;
 }
 
 /* Palette URL: http://paletton.com/#uid=13Z0u0kllllaFw0g0qFqFg0w0aF */
@@ -57,7 +65,7 @@ body {
   color: #fff;
   background-color: #1A1B59;
   border: none;
-  margin: 10px;
+  margin: 5px;
   padding: 5px;
   width: 26px;
   font-size: 18px;

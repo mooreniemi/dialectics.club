@@ -15,16 +15,19 @@ function load(container, store) {
 
 function add(container) {
   container.innerHTML += templates.startArgument;
+  return container;
 }
 
 function submitArgument(container, store) {
   save(store);
-  redraw(container, store);
+  container = redraw(container, store);
+  return container;
 }
 
 function save(store) {
   const [i, t] = document.querySelectorAll('input');
   const args = [i.value, t.value];
+
   // TODO: how to key usefully?
   const key = `${i.value}-${t.value}`;
   var o = {};
@@ -34,6 +37,8 @@ function save(store) {
   storedArguments.push(o);
 
   store.persist(constants.keyName, storedArguments);
+
+  return store;
 }
 
 function redraw(container, store) {
@@ -44,6 +49,8 @@ function redraw(container, store) {
 
   load(container, store);
   add(container);
+
+  return container;
 }
 
 module.exports = { redraw, submitArgument };

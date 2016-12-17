@@ -7,7 +7,11 @@ const workingArea = '<div id="workingArea"><div id="sheet"></div><button id="sub
 const startArgument = `<div id="activeArgument" class="argument">If <input name="if" class="ifInput" placeholder="x is true">, then <input name="then" class="thenInput" placeholder="y is true">.</div>`;
 
 function oneArgument(a) {
-  const [i, t] = Object.values(a)[0];
+  //TODO: should i shim Object.values?
+  var vals = Object.keys(a).map(key =>{
+    return a[key];
+  })[0];
+  const [i, t] = vals;
   return `<div id="${Object.keys(a)}" class="argument">If ${i}, then ${t}.</div>`;
 }
 
