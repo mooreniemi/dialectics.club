@@ -21,7 +21,7 @@ describe('judgments', function() {
   });
 
   describe('#redraw', function() {
-    it('it should show all current arguments', function() {
+    it('should show all current arguments', function() {
       var newContainer = judgments.redraw(container, store);
       expect(newContainer.innerHTML).eq(templates.startArgument);
     });
@@ -34,7 +34,7 @@ describe('judgments', function() {
       inputIf.value = 'x';
       inputThen.value = 'y';
     });
-    it('it should save a judgment to our store', function() {
+    it('should save a judgment to our store', function() {
       var newContainer = judgments.submitArgument(container, store);
       var a = { 'x-y': [ 'x', 'y' ] };
       expect(newContainer.innerHTML).includes(templates.oneArgument(a));

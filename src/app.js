@@ -20,7 +20,9 @@ function init() {
     flashMessages.innerHTML += templates.defaultFlash;
 
     window.setTimeout(function() {
-      var flashes = [].slice.call(document.getElementsByClassName('flashMessage'));
+      var flashes = [].slice.call(
+        document.getElementsByClassName('flashMessage')
+      );
       flashes.map(s => { s.remove(); });
     }, 5000);
 

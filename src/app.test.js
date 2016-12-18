@@ -18,7 +18,7 @@ describe('app', function() {
   });
 
   describe('#init', function() {
-    it('it should load our application to our appContainer element', function() {
+    it('should load our application to our appContainer element', function() {
       app.init();
 
       var content = document.getElementsByClassName('flashMessage')[0].textContent;
