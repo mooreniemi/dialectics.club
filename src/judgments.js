@@ -2,8 +2,8 @@ const constants = require('./constants.js');
 const templates = require('./templates.js');
 
 function load(container, store) {
-  var arguments = store.retrieveAll(constants.keyName);
-  var serialized = arguments.map(e => {
+  var judgments = store.retrieveAll(constants.judgmentsKey);
+  var serialized = judgments.map(e => {
     return templates.oneArgument(e);
   });
 
@@ -24,19 +24,41 @@ function submitArgument(container, store) {
   return container;
 }
 
+String.prototype.hashCode = function() {
+  var hash = 0, i, chr, len;
+  if (this.length === 0) return hash;
+  for (i = 0, len = this.length; i < len; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};
+
 function save(store) {
-  const [i, t] = document.querySelectorAll('input');
-  const args = [i.value, t.value];
+  function addToCurrentCollection(input, keyName) {
+    const cKey = `${input.value.hashCode()}`;
+    var storedC = store.retrieveAll(keyName);
+    var o = {};
+    o[cKey] = input.value;
+    storedC.push(o);
+    store.persist(keyName, storedC);
+    return cKey;
+  };
 
-  // TODO: how to key usefully?
-  const key = `${i.value}-${t.value}`;
-  var o = {};
-  o[key] = args;
+  const [ifInput, thenInput] = document.querySelectorAll('input');
+  const statement = [ifInput.value, thenInput.value];
 
-  var storedArguments = store.retrieveAll(constants.keyName);
-  storedArguments.push(o);
+  const ifKey = addToCurrentCollection(ifInput, constants.ifsKey);
+  const thenKey = addToCurrentCollection(thenInput, constants.thensKey);
 
-  store.persist(constants.keyName, storedArguments);
+  const key = `${ifKey}${constants.keyDelimiter}${thenKey}`;
+  var j = {};
+  j[key] = statement;
+
+  var storedJudgments = store.retrieveAll(constants.judgmentsKey);
+  storedJudgments.push(j);
+  store.persist(constants.judgmentsKey, storedJudgments);
 
   return store;
 }

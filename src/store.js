@@ -23,10 +23,11 @@ function connect() {
 }
 
 function init(storage) {
-	const currentStore = storage.getItem(constants.keyName);
-	if(currentStore === null) {
-		storage.setItem(constants.keyName, JSON.stringify([]));
-	}
+  constants.storageKeys.map(k => {
+	  if(storage.getItem(k) === null) {
+		  storage.setItem(k, JSON.stringify([]));
+	  }
+  });
 
   return {
     retrieveAll(key) {

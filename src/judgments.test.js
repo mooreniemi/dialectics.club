@@ -36,7 +36,7 @@ describe('judgments', function() {
     });
     it('should save a judgment to our store', function() {
       var newContainer = judgments.submitArgument(container, store);
-      var a = { 'x-y': [ 'x', 'y' ] };
+      var a = { '120>121': [ 'x', 'y' ] };
       expect(newContainer.innerHTML).includes(templates.oneArgument(a));
     });
   });
