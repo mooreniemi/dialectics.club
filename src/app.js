@@ -31,10 +31,10 @@ function init() {
 
     const submitArgumentButton = document.getElementById('submit');
     submitArgumentButton.addEventListener('click', function() {
-      judgments.submitArgument(s, store);
+      judgments.submitArgument(store, s);
     });
 
-    judgments.redraw(s, store);
+    judgments.redraw(store, s);
   }
 
 

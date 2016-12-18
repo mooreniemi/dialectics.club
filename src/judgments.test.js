@@ -22,20 +22,20 @@ describe('judgments', function() {
 
   describe('#redraw', function() {
     it('should show all current arguments', function() {
-      var newContainer = judgments.redraw(container, store);
+      var newContainer = judgments.redraw(store, container);
       expect(newContainer.innerHTML).eq(templates.startArgument);
     });
   });
   describe('#submitArgument', function() {
     before(function() {
-      judgments.redraw(container, store);
+      judgments.redraw(store, container);
       const [inputIf, inputThen] = document.querySelectorAll('input');
 
       inputIf.value = 'x';
       inputThen.value = 'y';
     });
     it('should save a judgment to our store', function() {
-      var newContainer = judgments.submitArgument(container, store);
+      var newContainer = judgments.submitArgument(store, container);
       var a = { '120>121': [ 'x', 'y' ] };
       expect(newContainer.innerHTML).includes(templates.oneArgument(a));
     });

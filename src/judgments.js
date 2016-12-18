@@ -18,12 +18,6 @@ function add(container) {
   return container;
 }
 
-function submitArgument(container, store) {
-  save(store);
-  container = redraw(container, store);
-  return container;
-}
-
 String.prototype.hashCode = function() {
   var hash = 0, i, chr, len;
   if (this.length === 0) return hash;
@@ -63,7 +57,7 @@ function save(store) {
   return store;
 }
 
-function redraw(container, store) {
+function redraw(store, container) {
   var oldArgument = document.getElementById('activeArgument');
   if(oldArgument !== null) {
     oldArgument.remove();
@@ -72,6 +66,12 @@ function redraw(container, store) {
   load(container, store);
   add(container);
 
+  return container;
+}
+
+function submitArgument(store, container) {
+  save(store);
+  container = redraw(store, container);
   return container;
 }
 
